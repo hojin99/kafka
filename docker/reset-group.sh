@@ -1,0 +1,1 @@
+docker-compose exec kafka kafka-consumer-groups --bootstrap-server kafka:9092 --group my-group --reset-offsets --shift-by -1 --execute --topic my-topic

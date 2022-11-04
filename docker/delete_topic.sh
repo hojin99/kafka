@@ -1,0 +1,1 @@
+docker-compose exec kafka kafka-topics --delete --topic my-topic --bootstrap-server kafka:9092

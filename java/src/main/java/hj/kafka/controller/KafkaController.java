@@ -1,12 +1,12 @@
 package hj.kafka.controller;
 
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/kafka/")
+import java.util.Map;
+
+//@RestController
+//@RequestMapping("/kafka/")
 //@RequiredArgsConstructor
 public class KafkaController {
     private final KafkaTemplate producer;
@@ -15,10 +15,10 @@ public class KafkaController {
         this.producer = producer;
     }
 
-    @GetMapping(value = "/sendMessage")
-    public String sendMessage(String message) {
+    @PostMapping(value = "/sendMessage")
+    public String sendMessage(@RequestParam Map<String, Object> param) {
 
-        this.producer.send("my-topic", message);
+        this.producer.send("my-topic", (String)param.get("message"));
 
         return "success";
     }

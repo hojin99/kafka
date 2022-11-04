@@ -1,11 +1,11 @@
 const { Kafka } = require('kafkajs')
 
 const kafka = new Kafka({
-    clientId: 'my-app',
+    clientId: 'node-test',
     brokers: ['localhost:29092']
 })
 
-const consumer = kafka.consumer({ groupId: 'test-group'})
+const consumer = kafka.consumer({ groupId: 'my-group3'})
 
 const initKafka = async () => {
     console.log('start subscribe')

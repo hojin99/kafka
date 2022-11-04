@@ -1,0 +1,1 @@
+docker-compose exec kafka kafka-consumer-groups --bootstrap-server kafka:9092 --all-groups --describe

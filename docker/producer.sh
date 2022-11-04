@@ -1,1 +1,1 @@
-docker-compose exec kafka kafka-console-producer --topic my-topic --broker-list kafka:9092
+docker-compose exec kafka kafka-console-producer --topic my-topic --broker-list kafka:9092 --producer-property client.id=my-console-producer 

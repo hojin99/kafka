@@ -5,7 +5,7 @@ const port = 3000
 const { Kafka } = require('kafkajs')
 
 const kafka = new Kafka({
-    clientId: 'my-app',
+    clientId: 'my-node-producer',
     brokers: ['localhost:29092']
 })
 
