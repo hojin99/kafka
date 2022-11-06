@@ -1,6 +1,7 @@
 spring:
   kafka:
     consumer:
+      client-id: my-spring-consumer
       bootstrap-servers: localhost:29092
       auto-offset-reset: earliest
       key-deserializer : org.apache.kafka.common.serialization.StringDeserializer
@@ -9,3 +10,9 @@ spring:
       bootstrap-servers: localhost:29092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+kafka:
+  topic: my-topic
+  group-id: my-group4
+  dest-dir: C:\\work\\kafka\\java\\file
+

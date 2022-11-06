@@ -1,17 +1,22 @@
 const { Kafka } = require('kafkajs')
 
+const brokers = "localhost:29092"
+const clientId = "my-node-test"
+const topic = "my-topic"
+const groupId = "my-group3"
+
 const kafka = new Kafka({
-    clientId: 'node-test',
-    brokers: ['localhost:29092']
+    clientId: clientId,
+    brokers: [brokers]
 })
 
-const consumer = kafka.consumer({ groupId: 'my-group3'})
+const consumer = kafka.consumer({ groupId: groupId})
 
 const initKafka = async () => {
     console.log('start subscribe')
     await consumer.connect()
     await consumer.subscribe({
-        topic: 'my-topic',
+        topic: topic,
         fromBeginning: true
     })
     await consumer.run({

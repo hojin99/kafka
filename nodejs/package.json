@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "produce_web": "node producer.js",
+    "produce_bulk": "node producer-bulk.js",
+    "consume": "node consumer.js"
   },
   "author": "",
   "license": "ISC",

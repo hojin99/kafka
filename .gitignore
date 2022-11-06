@@ -1,4 +1,11 @@
 node_modules
+*.dat
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
 ### VS Code ###
 .vscode/

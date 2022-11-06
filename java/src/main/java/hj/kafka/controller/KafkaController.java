@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-//@RestController
-//@RequestMapping("/kafka/")
-//@RequiredArgsConstructor
+@RestController
+@RequestMapping("/kafka/")
 public class KafkaController {
     private final KafkaTemplate producer;
 
