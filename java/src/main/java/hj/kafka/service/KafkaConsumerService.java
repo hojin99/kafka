@@ -3,6 +3,9 @@ package hj.kafka.service;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedWriter;
@@ -20,10 +23,12 @@ public class KafkaConsumerService {
     @Value("${kafka.dest-dir}")
     String destDir;
 
-    @KafkaListener(topics="${kafka.topic}", groupId ="${kafka.group-id}")
-    public void consume(String message) throws IOException {
+//    @KafkaListener(topics="${kafka.topic}", groupId ="${kafka.group-id}")
+    @KafkaListener(topics="${kafka.topic}")
+    public void consume(@Payload String message,
+                        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) throws IOException {
 
-        log.info("consume!");
+        log.info("consume! partition - " + partition);
         String[] msgs = message.split("\\n");
 
         // 첫번째 4 줄은 전체 메세지의 요약 정보
@@ -83,8 +88,8 @@ public class KafkaConsumerService {
                         log.info("temp  :" + temp);
                         File file = new File(temp);
 
-                        if (file.exists()) file.delete();
-                        file.createNewFile();
+//                        if (file.exists()) file.delete();
+                        if (!file.exists()) file.createNewFile();
 
                         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
                         files.put(measInfoId, bw);
