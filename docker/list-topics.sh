@@ -1,1 +1,1 @@
-docker-compose exec kafka kafka-topics --list --topic my-topic --bootstrap-server kafka:9092
+docker-compose exec kafka kafka-topics --list --bootstrap-server kafka:9092

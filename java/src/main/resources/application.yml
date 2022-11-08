@@ -16,6 +16,7 @@ kafka:
 #  bootstrapAddress: localhost:29092
 #  client-id: my-spring-app
   topic: my-topic
+  topic2: my-topic2
 #  group-id: my-group4
   dest-dir: C:\\work\\kafka\\java\\file
 

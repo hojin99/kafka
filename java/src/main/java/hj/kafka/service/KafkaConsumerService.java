@@ -127,4 +127,16 @@ public class KafkaConsumerService {
         }
 
     }
+
+    @KafkaListener(topics="${kafka.topic2}")
+    public void consume2(@Payload String message,
+                        @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) throws IOException {
+
+        log.info("consume2! partition - " + partition);
+        String[] msgs = message.split("\\n");
+
+        log.info("length : " + msgs.length);
+
+    }
+
 }

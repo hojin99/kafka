@@ -4,8 +4,10 @@ const fs = require('fs')
 const brokers = "localhost:29092"
 const clientId = "my-node-test"
 const topic = "my-topic"
+const topic2 = "my-topic2"
 const inFile = "../message.txt"
 
+let cnt = 0;
 let intervalId;
 
 // kafka, producer 생성
@@ -26,12 +28,13 @@ const sendMessage = () => {
             return
         } 
 
-        console.log("send")
+        cnt++;
+        console.log("send - " + (cnt%2 == 0))
     
         data = "CreateTime:" + new Date().toISOString() + data.substring(data.indexOf("\n"))
         
         await producer.send({
-            topic: topic,
+            topic: (cnt%2 == 0) ? topic2 : topic,
             messages: [
                 { value: data },
             ],
@@ -47,7 +50,7 @@ const sendMessage = () => {
 const initKafka = async () => {
     await producer.connect()
 
-    intervalId = setInterval(sendMessage, 1000*60);
+    intervalId = setInterval(sendMessage, 1000*10);
 }
 
 initKafka()
@@ -58,4 +61,4 @@ setTimeout(async () => {
     console.log("end")
 
     await producer.disconnect()
-}, 5*60*1000);
+}, 2*60*1000);

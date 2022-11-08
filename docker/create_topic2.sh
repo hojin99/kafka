@@ -1,0 +1,1 @@
+docker-compose exec kafka kafka-topics --create --topic my-topic2 --bootstrap-server kafka:9092 --replication-factor 1 --partitions 2
