@@ -26,6 +26,9 @@ public class KafkaController {
     @PostMapping(value = "/sendMessage")
     public String sendMessage(@RequestParam Map<String, Object> param) {
 
+        // 비동기 방식으로 호출 (테스트)
+        // 동기 방식으로 호출해도 됨
+//        this.producer.send(topic, (String)param.get("message"));
         ListenableFuture<SendResult<String, String>> future =
                 this.producer.send(topic, (String)param.get("message"));
 

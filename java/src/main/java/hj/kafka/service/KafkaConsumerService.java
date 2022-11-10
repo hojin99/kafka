@@ -23,6 +23,7 @@ public class KafkaConsumerService {
     @Value("${kafka.dest-dir}")
     String destDir;
 
+    // @Header를 통해서 다양한 Kafka 메세지 정보를 참조할 수 있음 (topic, group id, partition, offset ...)
 //    @KafkaListener(topics="${kafka.topic}", groupId ="${kafka.group-id}")
     @KafkaListener(topics="${kafka.topic}")
     public void consume(@Payload String message,
@@ -88,7 +89,6 @@ public class KafkaConsumerService {
                         log.info("temp  :" + temp);
                         File file = new File(temp);
 
-//                        if (file.exists()) file.delete();
                         if (!file.exists()) file.createNewFile();
 
                         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
